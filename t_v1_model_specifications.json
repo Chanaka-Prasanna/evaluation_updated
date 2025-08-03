@@ -1,0 +1,102 @@
+{
+  "extraction_info": {
+    "timestamp": "2025-07-25T10:08:57.589134",
+    "model_path": "model/regex_to_e_nfa_tokenizer.pkl",
+    "tokenizer_path": "model/transformer_regex_to_e_nfa.pt",
+    "extractor_version": "simple_hardcoded"
+  },
+  "file_status": {
+    "model_file": {
+      "path": "model/regex_to_e_nfa_tokenizer.pkl",
+      "exists": true,
+      "size_bytes": 371,
+      "size_mb": 0.0
+    },
+    "tokenizer_file": {
+      "path": "model/transformer_regex_to_e_nfa.pt",
+      "exists": true,
+      "size_bytes": 5645058,
+      "size_mb": 5.38
+    }
+  },
+  "model_architecture": {
+    "model_name": "t_v1",
+    "model_type": "Sequence-to-Sequence Transformer",
+    "task": "Regex to E-NFA Translation",
+    "framework": "PyTorch"
+  },
+  "hyperparameters": {
+    "max_sequence_length": 250,
+    "embedding_dimension": 128,
+    "num_attention_heads": 8,
+    "num_encoder_layers": 3,
+    "num_decoder_layers": 3,
+    "hidden_dimension": 512,
+    "vocabulary_size": "Unknown"
+  },
+  "architecture_components": {
+    "input_processing": {
+      "tokenization": "Character-level",
+      "special_tokens": ["<PAD>", "< SOS >", "<EOS>"],
+      "max_input_length": 250
+    },
+    "embedding_layers": {
+      "source_embedding": {
+        "type": "nn.Embedding",
+        "vocab_size": "Unknown",
+        "embedding_dim": 128
+      },
+      "target_embedding": {
+        "type": "nn.Embedding",
+        "vocab_size": "Unknown",
+        "embedding_dim": 128
+      },
+      "positional_encoding": {
+        "type": "Sinusoidal",
+        "max_length": 250,
+        "dimension": 128
+      }
+    },
+    "transformer_core": {
+      "model_dimension": 128,
+      "attention_heads": 8,
+      "encoder_layers": 3,
+      "decoder_layers": 3,
+      "feedforward_dimension": 512,
+      "attention_mechanism": "Multi-Head Self-Attention",
+      "activation": "ReLU (PyTorch default)",
+      "dropout": "Default PyTorch values"
+    },
+    "output_layer": {
+      "type": "Linear",
+      "input_dimension": 128,
+      "output_dimension": "Unknown",
+      "activation": "None (logits output)"
+    }
+  },
+  "tokenizer_details": {
+    "vocabulary_size": "Unknown",
+    "special_tokens": {},
+    "vocabulary_sample": {},
+    "file_size_bytes": 5645058,
+    "loaded_successfully": false,
+    "error": "Could not load tokenizer: A load persistent id instruction was encountered,\nbut no persistent_load function was specified."
+  },
+  "estimated_parameters": {
+    "source_embedding": "vocab_size × 128",
+    "target_embedding": "vocab_size × 128",
+    "positional_encoding": "250 × 128",
+    "encoder_layers": "~3 × 4 × 128²",
+    "decoder_layers": "~3 × 4 × 128²",
+    "output_layer": "vocab_size × 128",
+    "note": "Exact count requires loading the actual model",
+    "estimated_total": "Several million parameters (depends on vocabulary size)"
+  },
+  "training_characteristics": {
+    "loss_function": "Cross-Entropy Loss (typical for seq2seq)",
+    "optimization": "Adam optimizer (typical for transformers)",
+    "teacher_forcing": "Likely used during training",
+    "attention_masking": "Causal masking for decoder",
+    "regularization": "Dropout (PyTorch default values)"
+  }
+}
