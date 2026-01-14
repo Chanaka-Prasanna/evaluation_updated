@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 
-from utils.gru_v1_definition import load_regex_to_e_nfa_model, predict_regex_to_e_nfa
+from utils.t_v4_definition import load_regex_to_e_nfa_model, predict_regex_to_e_nfa
 from evaluate import exact_match_rate, average_edit_distance, bleu, rouge_l, edit_distance
 
 
@@ -21,6 +21,14 @@ st.markdown("Upload your dataset and evaluate the model performance using variou
 st.sidebar.header("Model Information")
 st.sidebar.info("""
 This app uses a Transformer-based model to convert regex patterns to E-NFA representations.
+
+**Model: Transformer V4**
+- 3 encoder layers, 3 decoder layers
+- 8 attention heads
+- Embedding size: 128
+- Hidden dimension: 512
+- Max sequence length: 250
+- Character-level tokenization
 
 **Metrics calculated:**
 - Exact Match Rate
@@ -71,13 +79,13 @@ with col2:
     # Model and tokenizer paths
     model_path = st.text_input(
         "Model path:",
-        value="model/gru_regex_to_e_nfa.pt",
+        value="model/transformer_regex_to_e_nfa.pt",
         help="Path to the trained model file"
     )
     
     tokenizer_path = st.text_input(
         "Tokenizer path:",
-        value="model/regex_to_e_nfa_gru_tokenizer.pkl",
+        value="model/regex_to_e_nfa_tokenizer.pkl",
         help="Path to the tokenizer file"
     )
     
